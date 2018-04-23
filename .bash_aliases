@@ -2,8 +2,9 @@ shopt -s expand_aliases
 
 # Aliases
 alias ll='ls -lAFh'
+alias cd='pushd 2>&1 1>/dev/null'
 alias ag="/usr/local/bin/ag --color-match '01;31' --color-path '6;35' --color-line-number '6;32' --no-group"
-alias 1build='sandbox /workspace/dev-routing-clones/1/Build/build.py -f /workspace/dev-routing-clones/1/Build/NavArt.yaml'
+alias 1build='sandbox /rssd/git/dev-routing1/Build/build.py -f /rssd/git/dev-routing1/Build/NavArt.yaml'
 alias 2build='sandbox /workspace/dev-routing-clones/2/Build/build.py -f /workspace/dev-routing-clones/2/Build/NavArt.yaml'
 
 #Git aliases
@@ -13,7 +14,7 @@ alias gd="git diff"
 alias ga="git add"
 alias gc="git commit"
 
-alias nvim="~/clones/./nvim.appimage"
+alias nvim="~/git/clones/./nvim.appimage"
 
 git()
 {
@@ -25,3 +26,7 @@ git()
     command git "$@"
   fi
 }
+
+
+
+alias scabb='scan-build clang++'
