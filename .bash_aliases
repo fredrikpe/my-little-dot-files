@@ -15,6 +15,7 @@ alias ga="git add"
 alias gc="git commit"
 
 alias nvim="~/git/clones/./nvim.appimage"
+alias clang-format="clang-format-3.9"
 
 git()
 {
