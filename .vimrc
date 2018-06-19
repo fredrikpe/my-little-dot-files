@@ -17,8 +17,6 @@ set diffopt+=vertical
 
 Plugin 'weynhamz/vim-plugin-minibufexpl'
 
-Plugin 'octol/vim-cpp-enhanced-highlight'
-
 Plugin 'rust-lang/rust.vim'
 
 " All of your Plugins must be added before the following line
@@ -113,6 +111,9 @@ nmap ; :
 map <F9> :YcmCompleter FixIt<CR>
 cmap <C-p> <Up>
 cmap <C-n> <Down>
+
+" Show list of tags when more than one match
+nnoremap <C-]> g<C-]>
 " }}}
 
 
