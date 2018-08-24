@@ -1,6 +1,5 @@
 " Fredrik's Vimrc
 
-
 " Vundle {{{
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -44,6 +43,8 @@ set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
 set history=1000
+
+let loaded_matchparen = 1  " Don't highlight matching delimiter
 " }}}
 " Spaces & Tabs {{{
 set tabstop=2
@@ -57,7 +58,7 @@ set autoindent
 " }}}
 " UI Layout {{{
 set number              " show line numbers
-set relativenumber
+set norelativenumber
 set showcmd             " show command in bottom bar
 set nocursorline        " highlight current line
 set showmatch           " higlight matching parenthesis

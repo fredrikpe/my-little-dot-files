@@ -4,6 +4,9 @@ shopt -s expand_aliases
 alias ll='ls -lAFh'
 alias cd='pushd 2>&1 1>/dev/null'
 alias ag="/usr/local/bin/ag --color-match '01;31' --color-path '6;35' --color-line-number '6;32' --no-group"
+alias vimi='vim --cmd "let g:loaded_youcompleteme = 1"'
+
+
 alias 1build='sandbox /rssd/git/dev-routing1/Build/build.py -f /rssd/git/dev-routing1/Build/NavArt.yaml'
 alias 2build='sandbox /workspace/dev-routing-clones/2/Build/build.py -f /workspace/dev-routing-clones/2/Build/NavArt.yaml'
 
