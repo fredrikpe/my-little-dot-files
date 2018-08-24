@@ -28,7 +28,7 @@ git()
   if [[ $# -gt 0 && ( "$1" == "pull" || "$1" == "review" ) ]] ; then
     subcommand=$1
     shift
-    ( exec /home/lingebrig/./git/Scripts/ask-for-confirmation.sh ) && command git "$subcommand" "$@"
+    ( exec $HOME/./git/Scripts/ask-for-confirmation.sh ) && command git "$subcommand" "$@"
   else
     command git "$@"
   fi
