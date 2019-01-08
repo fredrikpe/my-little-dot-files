@@ -3,7 +3,7 @@ shopt -s expand_aliases
 # Aliases
 alias ll='ls -lAFh'
 alias cd='pushd 2>&1 1>/dev/null'
-alias ag="/usr/local/bin/ag --color-match '01;31' --color-path '6;35' --color-line-number '6;32' --no-group"
+#alias ag="`which ag` --color-match '01;31' --color-path '6;35' --color-line-number '6;32' --no-group"
 alias vimi='vim --cmd "let g:loaded_youcompleteme = 1"'
 
 #Git aliases
