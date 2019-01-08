@@ -24,7 +24,7 @@ filetype plugin indent on    " required
 " }}}
 " Colors {{{
 syntax enable
-colorscheme molokai
+" colorscheme 
 " }}}
 " Misc {{{
 set nocompatible                " be iMproved, required
@@ -47,10 +47,10 @@ set history=1000
 let loaded_matchparen = 1  " Don't highlight matching delimiter
 " }}}
 " Spaces & Tabs {{{
-set tabstop=2
+set tabstop=4
 set expandtab           " use spaces for tabs
-set softtabstop=2
-set shiftwidth=2
+set softtabstop=4
+set shiftwidth=4
 set modelines=1
 filetype indent on
 filetype plugin on
@@ -112,6 +112,9 @@ nmap ; :
 map <F9> :YcmCompleter FixIt<CR>
 cmap <C-p> <Up>
 cmap <C-n> <Down>
+
+map <C-K> :py3f /opt/clang-format.py<cr>
+imap <C-K> <c-o>:py3f /opt/clang-format.py<cr>
 
 " Show list of tags when more than one match
 nnoremap <C-]> g<C-]>
