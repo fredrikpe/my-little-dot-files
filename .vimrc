@@ -1,26 +1,34 @@
 " Fredrik's Vimrc
 
 " Vundle {{{
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+function! s:InitializeVundle()
+    if !filereadable("~/.vim/bundle/Vundle.vim")
+        echo "Vundle is not installed."
+        return
+    else
+        " set the runtime path to include Vundle and initialize
+        set rtp+=~/.vim/bundle/Vundle.vim
+        call vundle#begin()
 
-" let Vundle manage Vundle, required
-Bundle 'VundleVim/Vundle.vim'
+        " let Vundle manage Vundle, required
+        Bundle 'VundleVim/Vundle.vim'
 
-Plugin 'Valloric/YouCompleteMe'
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_global_ycm_extra_conf.py'
+        Plugin 'Valloric/YouCompleteMe'
+        let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_global_ycm_extra_conf.py'
 
-Plugin 'tpope/vim-fugitive'
-set diffopt+=vertical
+        Plugin 'tpope/vim-fugitive'
+        set diffopt+=vertical
 
-Plugin 'weynhamz/vim-plugin-minibufexpl'
+        Plugin 'weynhamz/vim-plugin-minibufexpl'
 
-Plugin 'rust-lang/rust.vim'
+        Plugin 'rust-lang/rust.vim'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+        " All of your Plugins must be added before the following line
+        call vundle#end()            " required
+        filetype plugin indent on    " required
+    endif
+endfunction
+call s:InitializeVundle()
 " }}}
 " Colors {{{
 syntax enable
