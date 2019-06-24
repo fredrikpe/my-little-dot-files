@@ -2,7 +2,7 @@
 
 " Vundle {{{
 function! s:InitializeVundle()
-    if !filereadable("~/.vim/bundle/Vundle.vim")
+    if !isdirectory($HOME.'/.vim/bundle/Vundle.vim/')
         echo "Vundle is not installed."
         return
     else
@@ -26,6 +26,7 @@ function! s:InitializeVundle()
         " All of your Plugins must be added before the following line
         call vundle#end()            " required
         filetype plugin indent on    " required
+        return
     endif
 endfunction
 call s:InitializeVundle()
