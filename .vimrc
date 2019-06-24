@@ -23,6 +23,8 @@ function! s:InitializeVundle()
 
         Plugin 'rust-lang/rust.vim'
 
+        Plugin 'elmcast/elm-vim'
+
         " All of your Plugins must be added before the following line
         call vundle#end()            " required
         filetype plugin indent on    " required
