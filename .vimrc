@@ -97,17 +97,7 @@ nnoremap B ^
 
 " Splits
 set splitright
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 
-" Tabs switches buffer
-nnoremap  <silent>   <tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
-nnoremap  <silent> <s-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
-" Ctrl+c deletes buffer and switches to next
-nnoremap <C-c> :bp\|bd #<CR>
-noremap E $
 " }}}
 " Leader stuff {{{
 let mapleader =","   "leader is comma
@@ -119,7 +109,6 @@ nnoremap <Leader>t :YcmCompleter GetType <CR>
 nnoremap <leader>s :mksession<CR>
 " }}}
 " Mappings {{{
-nmap ; :
 map <F9> :YcmCompleter FixIt<CR>
 cmap <C-p> <Up>
 cmap <C-n> <Down>
