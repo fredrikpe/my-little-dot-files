@@ -13,6 +13,8 @@ function! s:InitializeVundle()
         " let Vundle manage Vundle, required
         Bundle 'VundleVim/Vundle.vim'
 
+        Bundle 'zah/nim.vim'
+
         Plugin 'Valloric/YouCompleteMe'
         let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_global_ycm_extra_conf.py'
 

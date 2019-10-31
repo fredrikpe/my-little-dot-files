@@ -5,6 +5,7 @@ export PATH=/ssd/npmstuff/bin:$PATH
 export PATH="$HOME/.cargo/bin:$PATH"
 export SE_CORE=$SE_CORE:$HOME/.vim/se_core.rb
 export JAVA_HOME=/usr/lib/jvm/jdk-10.0.2
+export PATH=$HOME/.nimble/bin:$PATH
 
 
 # Prompt
