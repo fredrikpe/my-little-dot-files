@@ -21,11 +21,13 @@ function! s:InitializeVundle()
         Plugin 'tpope/vim-fugitive'
         set diffopt+=vertical
 
-        Plugin 'weynhamz/vim-plugin-minibufexpl'
-
         Plugin 'rust-lang/rust.vim'
 
         Plugin 'elmcast/elm-vim'
+
+        Plugin 'udalov/kotlin-vim'
+
+        Plugin 'ziglang/zig.vim.git'
 
         " All of your Plugins must be added before the following line
         call vundle#end()            " required
