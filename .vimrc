@@ -29,6 +29,11 @@ function! s:InitializeVundle()
 
         Plugin 'ziglang/zig.vim.git'
 
+        " Typescript
+        Plugin 'Quramy/tsuquyomi.git'
+
+        Plugin 'leafgarland/typescript-vim'
+
         " All of your Plugins must be added before the following line
         call vundle#end()            " required
         filetype plugin indent on    " required
@@ -72,7 +77,7 @@ filetype plugin on
 set autoindent
 " }}}
 " UI Layout {{{
-set number              " show line numbers
+set nonumber            " do not show line numbers
 set norelativenumber
 set showcmd             " show command in bottom bar
 set nocursorline        " highlight current line

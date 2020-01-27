@@ -8,6 +8,7 @@ export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export PATH=$HOME/.nimble/bin:$PATH
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH=/opt/zig-linux-x86_64-0.5.0+d3e67d992:$PATH
+export PATH=/opt/node-v12.14.1-linux-x64/bin:$PATH
 
 
 # Prompt
