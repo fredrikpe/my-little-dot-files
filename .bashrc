@@ -11,7 +11,7 @@ export PATH=/opt/zig-linux-x86_64-0.5.0+d3e67d992:$PATH
 export PATH=/opt/node-v12.14.1-linux-x64/bin:$PATH
 
 # Prompt
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u:\[\033[01;34m\]\w\[\033[00m\]\$ '
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u:\[\033[01;34m\]\W\[\033[00m\]\$ '
 
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
