@@ -2,6 +2,7 @@ shopt -s expand_aliases
 
 # Aliases
 alias ll='ls -lAFh'
+alias bc='bc -l <<<'
 
 # Git aliases
 alias gl="git log"

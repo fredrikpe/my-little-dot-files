@@ -9,6 +9,7 @@ export PATH=$HOME/.nimble/bin:$PATH
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH=/opt/zig-linux-x86_64-0.5.0+d3e67d992:$PATH
 export PATH=/opt/node-v12.14.1-linux-x64/bin:$PATH
+export PATH=/opt/arcanist/arcanist/bin:$PATH
 
 
 # Prompt
