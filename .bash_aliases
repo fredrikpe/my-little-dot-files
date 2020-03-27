@@ -12,6 +12,8 @@ alias gd="git diff"
 alias ga="git add"
 alias gc="git commit"
 
+alias jsonless="python -m json.tool | less"
+
 jcurl()
 {
     command curl "$@" | python -m json.tool
