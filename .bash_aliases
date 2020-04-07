@@ -3,6 +3,7 @@ shopt -s expand_aliases
 # Aliases
 alias ll='ls -lAFh'
 alias bc='bc -l <<<'
+alias fd="fdfind"
 
 # Git aliases
 alias gl="git log"
