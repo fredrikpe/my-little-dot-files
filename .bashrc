@@ -27,7 +27,10 @@ export HISTIGNORE="&:[ ]*:exit"
 shopt -s histappend
 
 stty -ixon  # Enabling Ctrl+S forward history search
+
 shopt -s globstar  # Recursive globbing
+
+set -o vi  # Vi mode
 
 
 if [ -f ~/.bash_aliases ]; then
