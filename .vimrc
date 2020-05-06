@@ -18,19 +18,11 @@ function! s:InitializeVundle()
         Plugin 'Valloric/YouCompleteMe'
         let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_global_ycm_extra_conf.py'
 
-        Plugin 'tpope/vim-fugitive'
-        set diffopt+=vertical
-
         Plugin 'rust-lang/rust.vim'
-
-        Plugin 'elmcast/elm-vim'
 
         Plugin 'udalov/kotlin-vim'
 
         Plugin 'ziglang/zig.vim.git'
-
-        " Typescript
-        Plugin 'Quramy/tsuquyomi.git'
 
         Plugin 'leafgarland/typescript-vim'
 
