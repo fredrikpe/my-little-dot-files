@@ -25,6 +25,7 @@ function! s:InitializeVundle()
         Plugin 'ziglang/zig.vim.git'
 
         Plugin 'leafgarland/typescript-vim'
+        au BufNewFile,BufRead *.tsx set filetype=typescript
 
         " All of your Plugins must be added before the following line
         call vundle#end()            " required
@@ -57,6 +58,10 @@ set undoreload=10000
 set history=1000
 
 let loaded_matchparen = 1  " Don't highlight matching delimiter
+
+" Scanning hangs in rust files. This fixes that. I don't know what the
+" drawbacks are. Haven't experienced any.
+set complete-=i
 " }}}
 " Spaces & Tabs {{{
 set tabstop=4
