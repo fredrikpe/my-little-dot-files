@@ -1,5 +1,25 @@
 " Fredrik's Vimrc
 
+" vim-plug {{{
+call plug#begin('~/.vim/plugged')
+
+Plug 'leafgarland/typescript-vim'
+Plug 'udalov/kotlin-vim'
+
+"nmap <C-&> <Plug>(TsuquyomiReferences)
+"Plug 'Quramy/tsuquyomi'
+
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   "rg --column --line-number --no-heading --color=always --smart-case -- ".shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview('up', 'ctrl-/'), 1)
+
+Plug 'ludovicchabant/vim-gutentags'
+
+call plug#end()
+" }}}
 " Vundle {{{
 function! s:InitializeVundle()
     if !isdirectory($HOME.'/.vim/bundle/Vundle.vim/')
@@ -37,7 +57,7 @@ call s:InitializeVundle()
 " }}}
 " Colors {{{
 syntax enable
-" colorscheme 
+colorscheme desert
 " }}}
 " Misc {{{
 set nocompatible                " be iMproved, required
@@ -124,7 +144,25 @@ imap <C-K> <c-o>:py3f /opt/clang-format.py<cr>
 
 " Show list of tags when more than one match
 nnoremap <C-]> g<C-]>
+command Bd bp\|bd \#
 " }}}
+" statusline {{{
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+
+set statusline=%#VertSplit#%{StatuslineGit()}
+set statusline+=%#CursorLine#%<\ %f
+set statusline+=\ %h%m%r%=%-14.(%p%%\ %l:%c%V%)
+
+set laststatus=2
+" }}}
+
 
 
 au VimLeavePre * if v:this_session != '' | exec "mks! " . v:this_session | endif

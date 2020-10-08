@@ -1,10 +1,10 @@
 # PATH
+source ~/.bashrc-local
 export PATH=$PATH:/opt/make/bin
 export PATH=$PATH:/usr/share/bcc/tools
 export PATH=/ssd/npmstuff/bin:$PATH
 export PATH="$HOME/.cargo/bin:$PATH"
 export SE_CORE=$SE_CORE:$HOME/.vim/se_core.rb
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export PATH=$HOME/.nimble/bin:$PATH
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH=/opt/zig-linux-x86_64-0.5.0+d3e67d992:$PATH
@@ -28,7 +28,7 @@ shopt -s histappend
 
 stty -ixon  # Enabling Ctrl+S forward history search
 
-shopt -s globstar  # Recursive globbing
+#mac error shopt -s globstar  # Recursive globbing
 
 set -o vi  # Vi mode
 

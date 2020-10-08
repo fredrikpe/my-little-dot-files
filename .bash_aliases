@@ -3,7 +3,6 @@ shopt -s expand_aliases
 # Aliases
 alias ll='ls -lAFh'
 alias bc='bc -l <<<'
-alias fd="fdfind"
 
 # Git aliases
 alias gl="git log"
@@ -19,3 +18,70 @@ jcurl()
 {
     command curl "$@" | python -m json.tool
 }
+
+coauthored()
+{
+    # TODO: Make a global list which is updated each time
+    local ALL_AUTHORS=$(git log | grep Co-auth | sort | uniq -c | sort -nr)
+
+    local authors=""
+    local author=""
+    for search_term in "$@"; do
+        if author=$(echo "$ALL_AUTHORS"| grep $search_term | head -n1 | grep -o 'Co-au.*') ; then
+            authors=$authors$author$'\n'
+        fi
+    done
+
+    echo "$authors" | pbcopy
+    echo "$authors"
+}
+
+
+# Safe k8s
+k() {
+    local current_context=$(kubectl config current-context)
+
+    if ! [[ $current_context =~ ^prod.*$ ]]
+    then
+        kubectl "$@"
+        return $?
+    fi
+
+    read -p "You are in prod. Sure you want to do this? " -n 1 -r
+    echo
+    if ! [[ $REPLY =~ ^[Y]$ ]]
+    then
+        return 2
+    fi
+
+    kubectl "$@"
+}
+
+podname()
+{
+    echo "$(kubectl get pods | rg "$@" | choose 0)"
+}
+
+port_forward()
+{
+    if [ "$#" -lt 2 ]; then
+        echo "Usage: port_forward [port] [pod-search ...]"
+        return 2
+    fi
+
+    local port="$1"
+    shift
+
+    local pods=$(kubectl get pods | rg "$1")
+    echo "Found these pods:"
+    echo "$pods"
+    echo ""
+
+    local target=$(echo "$pods" | choose 0 | head -n1)
+    local container_port=$(kubectl get pod $target --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}')
+
+    echo "Forwarding from $target"
+    echo ""
+    kubectl port-forward pods/$target $port:$container_port
+}
+
