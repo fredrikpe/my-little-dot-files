@@ -9,8 +9,7 @@ Plug 'udalov/kotlin-vim'
 "nmap <C-&> <Plug>(TsuquyomiReferences)
 "Plug 'Quramy/tsuquyomi'
 
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   "rg --column --line-number --no-heading --color=always --smart-case -- ".shellescape(<q-args>), 1,
@@ -128,14 +127,14 @@ set splitright
 " Leader stuff {{{
 let mapleader =","   "leader is comma
 
-nnoremap <Leader>f :YcmCompleter FixIt <CR>
-nnoremap <Leader>d :YcmCompleter GetDoc <CR>
-nnoremap <Leader>t :YcmCompleter GetType <CR>
+" nnoremap <Leader>f :YcmCompleter FixIt <CR>
+" nnoremap <Leader>d :YcmCompleter GetDoc <CR>
+" nnoremap <Leader>t :YcmCompleter GetType <CR>
 " save session
 nnoremap <leader>s :mksession<CR>
 " }}}
 " Mappings {{{
-map <F9> :YcmCompleter FixIt<CR>
+" map <F9> :YcmCompleter FixIt<CR>
 cmap <C-p> <Up>
 cmap <C-n> <Down>
 
