@@ -3,6 +3,7 @@ shopt -s expand_aliases
 # Aliases
 alias ll='ls -lAFh'
 alias bc='bc -l <<<'
+alias rg='rg --hidden'
 
 # Git aliases
 alias gl="git log"
@@ -14,28 +15,34 @@ alias gc="git commit"
 
 alias jsonless="python -m json.tool | less"
 
+ca()
+{
+    bc "$@"
+}
+
 jcurl()
 {
     command curl "$@" | python -m json.tool
 }
 
-coauthored()
+coauthors()
 {
-    # TODO: Make a global list which is updated each time
-    local ALL_AUTHORS=$(git log | grep Co-auth | sort | uniq -c | sort -nr)
+    if [[ $# -eq 0 ]] ; then
+        echo -e "usage: coauthors search_terms..."
+        return
+    fi
+    local all_authors=$(git log | sed -nE "s/.*uthor.*: (.*)/\1/p" | sort | uniq -c | sort -nr)
 
-    local authors=""
-    local author=""
+    local result=""
     for search_term in "$@"; do
-        if author=$(echo "$ALL_AUTHORS"| grep $search_term | head -n1 | grep -o 'Co-au.*') ; then
-            authors=$authors$author$'\n'
+        if author=$(echo "$all_authors"| grep $search_term | head -n1 | sed -nE "s/.*[[:digit:]]+ (.*)/\1/p"); then
+            result=$result$'Co-authored-by: '$author$'\n'
         fi
     done
 
-    echo "$authors" | pbcopy
-    echo "$authors"
+    echo "$result" | pbcopy
+    echo "$result"
 }
-
 
 # Safe k8s
 k() {

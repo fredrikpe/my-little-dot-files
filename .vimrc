@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'leafgarland/typescript-vim'
 Plug 'udalov/kotlin-vim'
+Plug 'idris-hackers/idris-vim'
 
 "nmap <C-&> <Plug>(TsuquyomiReferences)
 "Plug 'Quramy/tsuquyomi'
@@ -15,7 +16,10 @@ command! -bang -nargs=* Rg
   \   "rg --column --line-number --no-heading --color=always --smart-case -- ".shellescape(<q-args>), 1,
   \   fzf#vim#with_preview('up', 'ctrl-/'), 1)
 
+noremap <c-j> :call fzf#vim#grep("rg --column --line-number --no-heading --color=always -- ".shellescape(expand('<cword>')), 1, fzf#vim#with_preview('up', 'ctrl-/'), 1)<cr><cr>
+
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'whonore/Coqtail'
 
 call plug#end()
 " }}}
