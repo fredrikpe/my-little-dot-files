@@ -6,12 +6,7 @@ alias bc='bc -l <<<'
 alias rg='rg --hidden'
 
 # Git aliases
-alias gl="git log"
 alias glf="git log --graph --date=format-local:'%d.%m.%y %H:%M' --pretty=format:'%Cred%>|(15)%h %C(yellow)%<|(29,trunc)%an %C(green)%ad  %C(yellow)%<|(60,trunc)%cn %C(green)%cd %C(bold blue)%d %Creset%s'"
-alias gs="git status"
-alias gd="git diff"
-alias ga="git add"
-alias gc="git commit"
 
 alias jsonless="python -m json.tool | less"
 
@@ -84,7 +79,7 @@ port_forward()
     echo "$pods"
     echo ""
 
-    local target=$(echo "$pods" | choose 0 | head -n1)
+    local target=$(echo "$pods" | cut -d' ' -f1 | head -n1)
     local container_port=$(kubectl get pod $target --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}')
 
     echo "Forwarding from $target"

@@ -1,18 +1,17 @@
-# PATH
-source ~/.bashrc-local
-export PATH=$PATH:/opt/make/bin
-export PATH=$PATH:/usr/share/bcc/tools
-export PATH=/ssd/npmstuff/bin:$PATH
-export PATH="$HOME/.cargo/bin:$PATH"
-export SE_CORE=$SE_CORE:$HOME/.vim/se_core.rb
-export PATH=$HOME/.nimble/bin:$PATH
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH=/opt/zig-linux-x86_64-0.5.0+d3e67d992:$PATH
-export PATH=/opt/node-v12.14.1-linux-x64/bin:$PATH
-export PATH=/opt/arcanist/arcanist/bin:$PATH
+if [ -f ~/.bashrc-local ]; then
+    . ~/.bashrc-local
+fi
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Prompt
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u:\[\033[01;34m\]\W\[\033[00m\]\$ '
+if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+    GIT_PROMPT_THEME=Solarized
+    GIT_PROMPT_ONLY_IN_REPO=0
+    source $HOME/.bash-git-prompt/gitprompt.sh
+fi
 
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -36,27 +35,9 @@ export HISTFILE=~/.bash_eternal_history
 # http://superuser.com/questions/20900/bash-history-loss
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-
 stty -ixon  # Enabling Ctrl+S forward history search
 
-#mac error shopt -s globstar  # Recursive globbing
-
 set -o vi  # Vi mode
-
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-export SDKMAN_DIR="/home/fredrik/.sdkman"
-[[ -s "/home/fredrik/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fredrik/.sdkman/bin/sdkman-init.sh"
-
-
-# For flamegraphs
-export FLAMEGRAPH_DIR=/home/fredrik/git/clones/FlameGraph
-export PERF_RECORD_FREQ=997
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -66,3 +47,5 @@ export NVM_DIR="$HOME/.nvm"
 # FZF
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+export BAT_THEME="Solarized (light)"
