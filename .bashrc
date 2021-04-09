@@ -6,7 +6,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Prompt
+# Prompt https://github.com/magicmonty/bash-git-prompt
 if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
     GIT_PROMPT_THEME=Solarized
     GIT_PROMPT_ONLY_IN_REPO=0

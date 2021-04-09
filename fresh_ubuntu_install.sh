@@ -34,3 +34,6 @@ rm ripgrep_11.0.2_amd64.deb
 wget https://github.com/sharkdp/fd/releases/download/v8.0.0/fd-musl_8.0.0_amd64.deb
 sudo dpkg -i fd-musl_8.0.0_amd64.deb
 rm fd-musl_8.0.0_amd64.deb
+
+# bash-git-prompt
+git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
