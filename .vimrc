@@ -6,19 +6,24 @@ call plug#begin('~/.vim/plugged')
 Plug 'leafgarland/typescript-vim'
 Plug 'udalov/kotlin-vim'
 Plug 'idris-hackers/idris-vim'
+Plug 'ziglang/zig.vim'
 
 "nmap <C-&> <Plug>(TsuquyomiReferences)
 "Plug 'Quramy/tsuquyomi'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   "rg --column --line-number --no-heading --color=always --smart-case -- ".shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview('up', 'ctrl-/'), 1)
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
 
 noremap <c-j> :call fzf#vim#grep("rg --column --line-number --no-heading --color=always -- ".shellescape(expand('<cword>')), 1, fzf#vim#with_preview('up', 'ctrl-/'), 1)<cr><cr>
 
-Plug 'ludovicchabant/vim-gutentags'
+"Mega treig
+"Plug 'ludovicchabant/vim-gutentags'
+"
 Plug 'whonore/Coqtail'
 
 call plug#end()
