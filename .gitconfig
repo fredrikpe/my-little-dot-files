@@ -1,0 +1,17 @@
+[core]
+	pager = delta
+	editor = vim
+[interactive]
+	diffFilter = delta --color-only --features=interactive
+[delta]
+	features = decorations
+    hunk-header-style = omit
+    line-numbers = true
+[user]
+	name = Fredrik Ingebrigtsen
+	email = fredrikpei@gmail.com
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status

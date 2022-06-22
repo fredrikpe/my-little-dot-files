@@ -11,7 +11,6 @@ alias python='python3'
 alias glf="git log --graph --date=format-local:'%d.%m.%y %H:%M' --pretty=format:'%Cred%>|(15)%h %C(yellow)%<|(29,trunc)%an %C(green)%ad  %C(yellow)%<|(60,trunc)%cn %C(green)%cd %C(bold blue)%d %Creset%s'"
 
 alias jsonless="python -m json.tool | less"
-alias kubens="~/./scripts/kubens"
 
 ca()
 {
