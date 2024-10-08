@@ -51,3 +51,14 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export BAT_THEME="Solarized (light)"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+. "$HOME/.cargo/env"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH=$BUN_INSTALL/bin:$PATH
+
+# Created by `pipx` on 2024-06-10 07:25:23
+export PATH="$PATH:/Users/fpi/.local/bin"
+
+# go
+export PATH="$HOME/Go/bin:$PATH"

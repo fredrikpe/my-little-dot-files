@@ -7,6 +7,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'udalov/kotlin-vim'
 Plug 'idris-hackers/idris-vim'
 Plug 'ziglang/zig.vim'
+Plug 'https://github.com/PyGamer0/vim-apl'
 
 "nmap <C-&> <Plug>(TsuquyomiReferences)
 "Plug 'Quramy/tsuquyomi'

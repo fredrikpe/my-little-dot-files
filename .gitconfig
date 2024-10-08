@@ -1,6 +1,6 @@
 [core]
 	pager = delta
-	editor = vim
+	editor = nvim
 [interactive]
 	diffFilter = delta --color-only --features=interactive
 [delta]
@@ -15,3 +15,5 @@
 	br = branch
 	ci = commit
 	st = status
+[push]
+	autoSetupRemote = true

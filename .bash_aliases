@@ -45,7 +45,6 @@ coauthors()
     echo "$result"
 }
 
-alias k='kubectl'
 # Safe k8s
 #k() {
     #local current_context=$(kubectl config current-context)
@@ -95,7 +94,7 @@ port_forward()
     kubectl port-forward pods/$target $port:$container_port
 }
 
-alias weeknumber='date +"%U"'
+alias weeknumber='date +"%V"'
 
 
 url_psql_fra_vault()
@@ -143,11 +142,6 @@ sternl()
     rm /tmp/stern-tmp
 }
 
-urlencode()
-{
-    echo "$@" | python3 -c 'import sys;from requests.utils import requote_uri; print(requote_uri(sys.stdin.read().rstrip()))'
-}
-
 hedo() {
     if id | grep -o "80(admin)" >/dev/null; then
         echo "I Have The Power"
@@ -161,7 +155,7 @@ hedo() {
 change_delta_theme()
 {
     if [ "$#" -lt 1 ]; then
-        echo "Usage: change_delta_theme <pod>"
+        echo "Usage: change_delta_theme <theme>"
         return 2
     fi
 
@@ -174,7 +168,7 @@ change_delta_theme()
         return 0
     fi
 
-    echo "Usage: change_delta_theme <pod>"
+    echo "Usage: change_delta_theme <theme>"
     return 2
 }
 
@@ -198,3 +192,93 @@ change_delta_theme()
         #printf "\n"
 #}
 
+lines () {
+    ghead --lines "$1" | gtail --lines 1
+}
+
+urlencode() {
+    # urlencode <string>
+
+    old_lc_collate=$LC_COLLATE
+    LC_COLLATE=C
+
+    local length="${#1}"
+    for (( i = 0; i < length; i++ )); do
+        local c="${1:$i:1}"
+        case $c in
+            [a-zA-Z0-9.~_-]) printf '%s' "$c" ;;
+            *) printf '%%%02X' "'$c" ;;
+        esac
+    done
+
+    LC_COLLATE=$old_lc_collate
+}
+
+fetch_api_data() {
+    k config use-context dev-gcp
+    nohup nais postgres proxy -p 5434 mulighetsrommet-api >/dev/null 2>&1 &
+    local proxy_pid=$!
+
+    echo "Waiting for db connection..."
+    while true; do
+        pg_isready --host=localhost --port=5434 --username=fredrik.ingebrigtsen@nav.no >/dev/null 2>&1 && break
+        sleep 0.1
+    done
+
+    pg_dump postgresql://localhost:5434/mulighetsrommet-api-db?user=fredrik.ingebrigtsen@nav.no > devdump
+    if test -f devdump; then
+        sed -i '' '/search_path/d' devdump
+        sed -i '' 's/mulighetsrommet-api/valp/g' devdump
+        psql postgresql://valp:valp@localhost:5442/mr-api < devdump 2>/dev/null
+        psql postgresql://valp:valp@localhost:5442/mr-api < devdump 2>/dev/null
+        rm devdump
+    else
+        echo "error dumping from dev"
+    fi
+
+    kill -sigterm $proxy_pid
+}
+
+fetch_tiltakshistorikk_data() {
+    k config use-context dev-gcp
+    nohup nais postgres proxy -p 5434 tiltakshistorikk >/dev/null 2>&1 &
+    local proxy_pid=$!
+
+    echo "Waiting for db connection..."
+    while true; do
+        pg_isready --host=localhost --port=5434 --username=fredrik.ingebrigtsen@nav.no >/dev/null 2>&1 && break
+        sleep 0.1
+    done
+
+    pg_dump postgresql://localhost:5434/tiltakshistorikk?user=fredrik.ingebrigtsen@nav.no > devdump
+    if test -f devdump; then
+        sed -i '' '/search_path/d' devdump
+        sed -i '' 's/tiltakshistorikk/valp/g' devdump
+        psql postgresql://valp:valp@localhost:5442/mr-tiltakshistorikk < devdump 2>/dev/null
+        psql postgresql://valp:valp@localhost:5442/mr-tiltakshistorikk < devdump 2>/dev/null
+        rm devdump
+    else
+        echo "error dumping from dev"
+    fi
+
+    kill -sigterm $proxy_pid
+}
+
+refetch_db_data() {
+    echo "Removing docker volumes..."
+    docker compose -p mulighetsrommet down -v
+    echo "Restarting docker..."
+    docker compose --profile dev --profile dev up -d
+
+    echo "Fetching api data..."
+    fetch_api_data
+    echo "Fetching tiltakshistorikk data..."
+    fetch_tiltakshistorikk_data
+}
+
+function glogin()
+{
+    if ! gcloud auth print-identity-token >/dev/null 2>&1; then
+        gcloud auth login --update-adc >/dev/null 2>&1
+    fi
+}
