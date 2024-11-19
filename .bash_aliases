@@ -1,11 +1,22 @@
 shopt -s expand_aliases
 
 # Aliases
+alias tm='trash'
 alias less='less --incsearch'
 alias ll='ls -lAFh'
 alias bc='bc -l <<<'
 alias rg='rg --hidden'
 alias python='python3'
+alias vim='nvim'
+alias k='/usr/local/bin/kubectl'
+alias pgprod='pgcli postgresql://localhost:5434/mulighetsrommet-api-db?user=fredrik.ingebrigtsen@nav.no'
+alias pgloc='pgcli postgresql://valp:valp@localhost:5442/mr-api'
+alias pglochistorikk='pgcli postgresql://valp:valp@localhost:5442/mr-tiltakshistorikk'
+alias pgqlistre='pgcli postgresql://qlistre:qlistre@localhost:5433/qlistre'
+alias apirun='cm && ./gradlew :mulighetsrommet-api:run'
+alias delete_merged_branches='git branch --merged | grep -Ev "(^\*|master|main|dev)" | xargs git branch -d'
+
+alias colima_sock='sudo rm -rf /var/run/docker.sock && sudo ln -s /Users/$(whoami)/.colima/docker.sock /var/run/docker.sock'
 
 # Git aliases
 alias glf="git log --graph --date=format-local:'%d.%m.%y %H:%M' --pretty=format:'%Cred%>|(15)%h %C(yellow)%<|(29,trunc)%an %C(green)%ad  %C(yellow)%<|(60,trunc)%cn %C(green)%cd %C(bold blue)%d %Creset%s'"
@@ -272,8 +283,8 @@ refetch_db_data() {
 
     echo "Fetching api data..."
     fetch_api_data
-    echo "Fetching tiltakshistorikk data..."
-    fetch_tiltakshistorikk_data
+    #echo "Fetching tiltakshistorikk data..."
+    #fetch_tiltakshistorikk_data
 }
 
 function glogin()
