@@ -1,14 +1,14 @@
 # Make symlinks
-rm ~/.bashrc
-rm ~/.bash_aliases
-rm ~/.inputrc
-rm ~/.vimrc
+#rm ~/.bashrc
+#rm ~/.bash_aliases
+#rm ~/.inputrc
+#rm ~/.vimrc
 
-gln -sr .bashrc ~/.bashrc
-gln -sr .bash_aliases ~/.bash_aliases
-gln -sr .gitconfig ~/.gitconfig
-gln -sr .inputrc ~/.inputrc
-gln -sr .vimrc ~/.vimrc
+ln -s .bashrc ~/.bashrc
+ln -s .bash_aliases ~/.bash_aliases
+ln -s .gitconfig ~/.gitconfig
+ln -s .inputrc ~/.inputrc
+ln -s .vimrc ~/.vimrc
 
 
 # Git specifics

@@ -1,21 +1,21 @@
 if [ -f ~/.bashrc-local ]; then
-    . ~/.bashrc-local
+  . ~/.bashrc-local
 fi
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Prompt https://github.com/magicmonty/bash-git-prompt
 if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
-    GIT_PROMPT_THEME=Solarized
-    GIT_PROMPT_ONLY_IN_REPO=0
-    source $HOME/.bash-git-prompt/gitprompt.sh
+  GIT_PROMPT_THEME=Solarized
+  GIT_PROMPT_ONLY_IN_REPO=0
+  source $HOME/.bash-git-prompt/gitprompt.sh
 fi
 
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
 # Eternal bash history.
@@ -35,14 +35,13 @@ export HISTFILE=~/.bash_eternal_history
 # http://superuser.com/questions/20900/bash-history-loss
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-stty -ixon  # Enabling Ctrl+S forward history search
+stty -ixon # Enabling Ctrl+S forward history search
 
-set -o vi  # Vi mode
+set -o vi # Vi mode
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # FZF
 export FZF_DEFAULT_COMMAND='fd --type f'
@@ -61,4 +60,21 @@ export PATH=$BUN_INSTALL/bin:$PATH
 export PATH="$PATH:/Users/fpi/.local/bin"
 
 # go
-export PATH="$HOME/Go/bin:$PATH"
+export PATH="/usr/local/go/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/fpi/Library/pnpm"
+case ":$PATH:" in
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+export PATH="/opt/homebrew/bin/:$PATH"
+eval "$(mise activate bash)"
+
+# Colima
+export COLIMA_VM="default"
+export COLIMA_VM_SOCKET="${HOME}/.colima/${COLIMA_VM}/docker.sock"
+export DOCKER_HOST="unix://${COLIMA_VM_SOCKET}"
+export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE="/var/run/docker.sock"
